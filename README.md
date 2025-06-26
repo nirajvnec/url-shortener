@@ -1,12 +1,21 @@
-I was checking the API built by the OneRisk team at the Security Service end, and based on our understanding, we expected the API to return user roles as shown in the attached screenshot (e.g., PB-MR-MEMBER, PBI-MTRM-CREDIT, etc.).
+public string? CreateUserEmailFromToken(HttpRequest request)
+{
+    if (request.Headers.ContainsKey("Authorization"))
+    {
+        var bearerToken = request.Headers["Authorization"].ToString()
+            .Replace("Bearer ", string.Empty, StringComparison.OrdinalIgnoreCase);
 
-However, these roles do not appear to exist in Active Directory, and we’re currently unable to retrieve them for any user through the API.
+        var handler = new JwtSecurityTokenHandler();
+        var jsonToken = handler.ReadToken(bearerToken) as JwtSecurityToken;
 
-Could you please help with either of the following:
+        if (jsonToken != null)
+        {
+            var user = jsonToken.Claims
+                .FirstOrDefault(claim => claim.Type.Equals("upn", StringComparison.OrdinalIgnoreCase))?.Value;
 
-Clarify how and where these roles are mapped or stored?
+            return user ?? "Unknown";
+        }
+    }
 
-Provide a test user (or update an existing one) with one or more of these roles assigned so we can validate the API behavior and test the workspace dropdown filtering?
-
-
-Let me know how you'd prefer to proceed.
+    return "Unknown";
+}
