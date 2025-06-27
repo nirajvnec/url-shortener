@@ -1,1 +1,1 @@
-I brought it up now just to avoid misunderstanding — happy to align with what’s final, as long as we’re all on the same page.
+Just to confirm — the token will only be included in the request if we pass the context object as the 4th parameter to getApiClient, right? Since the token is extracted from that context."
