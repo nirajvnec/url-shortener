@@ -1,1 +1,3 @@
-Just to confirm — the token will only be included in the request if we pass the context object as the 4th parameter to getApiClient, right? Since the token is extracted from that context."
+var filteredGroups = info[0].groups
+    .Where(x => !string.IsNullOrEmpty(x?.Name) && x.Name.Contains("MIM_ABT-GWG_"))
+    .ToList();
