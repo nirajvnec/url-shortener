@@ -7,3 +7,15 @@ ADD uploaded_by NVARCHAR(100) NULL,
 ALTER TABLE config.pbi_report_audit
 ADD uploaded_by NVARCHAR(100) NULL,
     uploaded_at DATETIME NULL;
+
+
+
+-- Remove columns from pbi_report
+ALTER TABLE config.pbi_report
+DROP COLUMN uploaded_by,
+             uploaded_at;
+
+-- Remove columns from pbi_report_audit
+ALTER TABLE config.pbi_report_audit
+DROP COLUMN uploaded_by,
+             uploaded_at;
