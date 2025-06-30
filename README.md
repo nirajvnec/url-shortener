@@ -8,6 +8,16 @@ FOREIGN KEY (pbi_report_event_key)
 REFERENCES config.pbi_report_event (pbi_report_event_key);
 
 
+-- Step 1: Drop the foreign key constraint
+ALTER TABLE [config].[pbi_report_subscription]
+DROP CONSTRAINT [FK_pbi_report_subscription_event];
+GO
+
+-- Step 2: Drop the column
+ALTER TABLE [config].[pbi_report_subscription]
+DROP COLUMN [pbi_report_event_key];
+GO
+
 
 
 -- Add columns to pbi_report (allow NULL)
