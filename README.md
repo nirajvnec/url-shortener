@@ -2,6 +2,12 @@ ALTER TABLE config.pbi_report_subscription
 ADD pbi_report_event_key INT NULL;
 
 
+ALTER TABLE config.pbi_report_subscription
+ADD CONSTRAINT FK_pbi_report_subscription_event
+FOREIGN KEY (pbi_report_event_key)
+REFERENCES config.pbi_report_event (pbi_report_event_key);
+
+
 
 
 -- Add columns to pbi_report (allow NULL)
