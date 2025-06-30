@@ -1,3 +1,9 @@
+ALTER TABLE config.pbi_report_subscription
+ADD pbi_report_event_key INT NULL;
+
+
+
+
 -- Add columns to pbi_report (allow NULL)
 ALTER TABLE config.pbi_report
 ADD uploaded_by NVARCHAR(100) NULL,
